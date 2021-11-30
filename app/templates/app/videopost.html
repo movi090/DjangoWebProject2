@@ -1,0 +1,18 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+	<div class="container">
+		<h1>Видео 1</h1>
+        <video src="{% static 'app/content/Video1.mp4'%}" controls="controls" width="400" height="300" poster=""></video>
+    </div>
+<hr/>
+    <div class="container">
+		<h1>Видео 1</h1>
+        <video src="{% static 'app/content/Video2.mp4'%}" controls="controls" width="400" height="300" poster=""></video>
+    </div>
+
+       
+
+{% endblock %}
