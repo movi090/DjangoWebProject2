@@ -23,25 +23,38 @@
                 </button>
                 <a href="/" class="navbar-brand"> <img src="{% static 'app/content/logo.png' %}" alt="logo" width="24" height="24" /> </a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse ">
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'home' %}">Домашняя страница</a></li>
-                    <li><a href="{% url 'about' %}">О сайте</a></li>
-                    <li><a href="{% url 'contact' %}">Контакты</a></li>
-                    <li><a href="{% url 'links' %}">Полезные ресурсы</a></li>
-                    <li><a href="{% url 'pool' %}">Анкета</a></li>
+                    <li><a href="{% url 'shop' %}">Магазин</a></li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            О нас <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'about' %}">О Нас</a></li>
+                            <li><a href="{% url 'contact' %}">Контакты</a></li>
+                            <li><a href="{% url 'pool' %}">Обратная связь</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{% url 'blog' %}">Блог</a></li>
-                    <li><a href="{% url 'videopost' %}">Видео</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'myOrders' %}">Мои заказы</a></li>
+                    {% endif %}
                     {% if user.is_superuser %}
                     <li><a href="{% url 'newpost' %}">Добавить статью</a></li>
                     {% endif %}
+                    {% if user.is_superuser %}
+                    <li><a href="{% url 'AllOrders' %}">Заказы</a></li>
+                    {% endif %}
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
                     {% if not user.is_authenticated %}
                     <li><a href="{% url 'registration' %}" class="right">Регистрация</a></li>
-
                     {% endif %}
                 </ul>
-
-                {% include 'app/loginpartial.html' %}
+                    {% include 'app/loginpartial.html' %}
 
             </div>
         </div>
